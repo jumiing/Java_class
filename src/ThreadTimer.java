@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-class TimerThread extends Thread {
+class TimerThread implements Runnable {//인터페이스 이용! 달라진부분
     private JLabel timerLabel;
 
     public TimerThread(JLabel timerLabel){
@@ -34,7 +34,10 @@ public class ThreadTimer extends JFrame {
         timerL.setFont(new Font("Gothic", Font.ITALIC, 70));
         c.add(timerL);
 
-        TimerThread th = new TimerThread(timerL);
+        //인터페이스 이용! 달라진부분
+        TimerThread runTh = new TimerThread(timerL);
+        Thread th = new Thread(runTh);
+
         setSize(300,180);
         setVisible(true);
 
